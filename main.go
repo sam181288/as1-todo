@@ -57,7 +57,10 @@ const (
 //						   use it.  See github.com/spf13/cobra for information
 //						   on how to use it.
 //
-//	 YOUR ANSWER: <GOES HERE>
+//	 YOUR ANSWER: Flag package is used to define and parse command line flags. In below function we are defining flags
+//	 for different operations like list, restore, query, add, update, delete and change status.
+//	 We are using switch case to check which flag is set and updating appOpt with respective action operation constant.
+//	 And we are also checking if flag is not implemented or flag is invalid or flag is not set and printing usage information in CLI.
 func processCmdLineFlags() (AppOptType, error) {
 	flag.StringVar(&dbFileNameFlag, "db", "./data/todo.json", "Name of the database file")
 	flag.BoolVar(&restoreDbFlag, "restore", false, "Restore the database from the backup file")
@@ -213,7 +216,12 @@ func main() {
 		//For the CHANGE_ITEM_STATUS extra credit you will also
 		//need to add some code here
 		fmt.Println("Running CHANGE_ITEM_STATUS...")
-		fmt.Println("Not implemented yet, but it can be for extra credit")
+		err := todo.ChangeItemDoneStatus(queryFlag, itemStatusFlag)
+		if err != nil {
+			fmt.Println("Error: ", err)
+			break
+		}
+
 		fmt.Println("Ok")
 	default:
 		fmt.Println("INVALID_APP_OPT")
