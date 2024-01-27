@@ -216,6 +216,10 @@ func main() {
 		//For the CHANGE_ITEM_STATUS extra credit you will also
 		//need to add some code here
 		fmt.Println("Running CHANGE_ITEM_STATUS...")
+		if queryFlag == 0 {
+			fmt.Println("Error: ", "Query flag is required for change status of an todo item")
+			break
+		}
 		err := todo.ChangeItemDoneStatus(queryFlag, itemStatusFlag)
 		if err != nil {
 			fmt.Println("Error: ", err)

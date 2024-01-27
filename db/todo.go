@@ -381,12 +381,17 @@ func (t *ToDo) ChangeItemDoneStatus(id int, value bool) error {
 	if _, ok := t.toDoMap[id]; !ok {
 		return errors.New("item not found in db")
 	}
-	// //var item ToDoItem
-	// //item, err := t.GetItem(id)
-	// if err != nil {
-	// 	return err
-	// }
-	return errors.New("ChangeItemDoneStatus() is currently not implemented")
+	var item ToDoItem
+	item, getError := t.GetItem(id)
+	if getError != nil {
+		return getError
+	}
+	item.IsDone = value
+	updateError := t.UpdateItem(item)
+	if updateError != nil {
+		return updateError
+	}
+	return nil
 }
 
 //------------------------------------------------------------

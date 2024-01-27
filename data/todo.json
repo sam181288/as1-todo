@@ -1,8 +1,13 @@
 [
   {
+    "id": 999,
+    "title": "This is a test case item",
+    "done": false
+  },
+  {
     "id": 1,
     "title": "Learn Go / GoLang",
-    "done": false
+    "done": true
   },
   {
     "id": 2,
